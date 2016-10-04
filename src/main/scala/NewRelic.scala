@@ -24,6 +24,7 @@ object NewRelic extends AutoPlugin {
     val newrelicIgnoreErrors = settingKey[Seq[String]]("List of exceptions that New Relic should not report as errors")
     val newrelicTemplateReplacements = settingKey[Seq[(String, String)]]("Replacements for New Relic configuration template")
     val newrelicIncludeApi = settingKey[Boolean]("Add New Relic API artifacts to library dependencies")
+    val newrelicLogDir = settingKey[String]("The directory for the newrelic agent log file. Default is the newrelic default (the logs directory under the newrelic.jar directory).")
   }
 
   import autoImport._
@@ -52,7 +53,8 @@ object NewRelic extends AutoPlugin {
       "custom_tracing" -> newrelicCustomTracing.value.toString,
       "attributes_enabled" -> newrelicAttributesEnabled.value.toString,
       "browser_monitoring" -> newrelicBrowserInstrumentation.value.toString,
-      "ignore_errors" -> newrelicIgnoreErrors.value.mkString(",")
+      "ignore_errors" -> newrelicIgnoreErrors.value.mkString(","),
+      "log_file_path" -> resolveNewrelicLogDir(newrelicLogDir.?.value)
     ),
     newrelicIncludeApi := false,
     libraryDependencies += "com.newrelic.agent.java" % "newrelic-agent" % newrelicVersion.value % nrConfig,
@@ -83,4 +85,6 @@ object NewRelic extends AutoPlugin {
     configurationFilter("newrelic-agent") && artifactFilter(`type` = "jar")
 
   def findNewrelicAgent(report: UpdateReport) = report.matching(newRelicFilter).head
+
+  private def resolveNewrelicLogDir(sbtSettingValueOpt: Option[String]): String = sbtSettingValueOpt.fold("#log_file_path:")("log_file_path: " + _)
 }
