@@ -9,9 +9,15 @@ $ exec grep -q "enable_custom_tracing: true" target/universal/stage/newrelic/new
 $ exec grep -q "auto_instrument: true" target/universal/stage/newrelic/newrelic.yml
 $ exec grep -q "ignore_errors: akka.actor.ActorKilledException" target/universal/stage/newrelic/newrelic.yml
 $ exec grep -q "#log_file_path:" target/universal/stage/newrelic/newrelic.yml
+$ exec grep -q "log_level: info" target/universal/stage/newrelic/newrelic.yml
+$ exec grep -q "audit_mode: false" target/universal/stage/newrelic/newrelic.yml
 
 > set newrelicLicenseKey := Some("abc")
 > set newrelicLogDir := s"foo/bar"
+> set newrelicLogLevel := NewRelicLogLevel.FINEST
+> set newrelicAuditMode := true
 > universal:stage
 $ exec grep -q "license_key: 'abc'" target/universal/stage/newrelic/newrelic.yml
 $ exec grep -q "log_file_path: foo/bar" target/universal/stage/newrelic/newrelic.yml
+$ exec grep -q "log_level: finest" target/universal/stage/newrelic/newrelic.yml
+$ exec grep -q "audit_mode: true" target/universal/stage/newrelic/newrelic.yml

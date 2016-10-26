@@ -11,6 +11,17 @@ import com.typesafe.sbt.packager.archetypes.TemplateWriter
 object NewRelic extends AutoPlugin {
 
   object autoImport {
+    object NewRelicLogLevel {
+      sealed trait LogLevel extends Product with Serializable
+      case object OFF extends LogLevel
+      case object SEVERE extends LogLevel
+      case object WARNING extends LogLevel
+      case object INFO extends LogLevel
+      case object FINE extends LogLevel
+      case object FINER extends LogLevel
+      case object FINEST extends LogLevel
+    }
+
     val newrelicVersion = settingKey[String]("New Relic version")
     val newrelicAgent = taskKey[File]("New Relic agent jar location")
     val newrelicAppName = settingKey[String]("App Name reported to New Relic monitoring")
@@ -25,6 +36,8 @@ object NewRelic extends AutoPlugin {
     val newrelicTemplateReplacements = settingKey[Seq[(String, String)]]("Replacements for New Relic configuration template")
     val newrelicIncludeApi = settingKey[Boolean]("Add New Relic API artifacts to library dependencies")
     val newrelicLogDir = settingKey[String]("The directory for the newrelic agent log file. Default is the newrelic default (the logs directory under the newrelic.jar directory).")
+    val newrelicLogLevel = settingKey[NewRelicLogLevel.LogLevel]("Specify the log level of the NewRelic agent. Default is `info`.")
+    val newrelicAuditMode = settingKey[Boolean]("Log all data sent to and from New Relic in plain text. Default is `false`.")
   }
 
   import autoImport._
@@ -46,6 +59,8 @@ object NewRelic extends AutoPlugin {
     newrelicAkkaInstrumentation := true,
     newrelicCustomTracing := false,
     newrelicIgnoreErrors := Seq("akka.actor.ActorKilledException"),
+    newrelicLogLevel := NewRelicLogLevel.INFO,
+    newrelicAuditMode := false,
     newrelicTemplateReplacements := Seq(
       "app_name" -> newrelicAppName.value,
       "license_key" -> newrelicLicenseKey.value.getOrElse(""),
@@ -54,7 +69,9 @@ object NewRelic extends AutoPlugin {
       "attributes_enabled" -> newrelicAttributesEnabled.value.toString,
       "browser_monitoring" -> newrelicBrowserInstrumentation.value.toString,
       "ignore_errors" -> newrelicIgnoreErrors.value.mkString(","),
-      "log_file_path" -> resolveNewrelicLogDir(newrelicLogDir.?.value)
+      "log_file_path" -> resolveNewrelicLogDir(newrelicLogDir.?.value),
+      "log_level" -> newrelicLogLevel.value.toString.toLowerCase,
+      "audit_mode" -> newrelicAuditMode.value.toString
     ),
     newrelicIncludeApi := false,
     libraryDependencies += "com.newrelic.agent.java" % "newrelic-agent" % newrelicVersion.value % nrConfig,
@@ -87,4 +104,5 @@ object NewRelic extends AutoPlugin {
   def findNewrelicAgent(report: UpdateReport) = report.matching(newRelicFilter).head
 
   private def resolveNewrelicLogDir(sbtSettingValueOpt: Option[String]): String = sbtSettingValueOpt.fold("#log_file_path:")("log_file_path: " + _)
+
 }
