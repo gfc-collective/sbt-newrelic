@@ -1,7 +1,7 @@
 > universal:stage
-$ absent target/universal/stage/lib/com.newrelic.agent.java.newrelic-api-3.34.0.jar
--$ exec grep -q newrelic-api-3.34.0.jar target/universal/stage/bin/app
+$ absent target/universal/stage/lib/com.newrelic.agent.java.newrelic-api-3.35.2.jar
+-$ exec grep -q newrelic-api-3.35.2.jar target/universal/stage/bin/app
 > set newrelicIncludeApi := true
 > universal:stage
-$ exists target/universal/stage/lib/com.newrelic.agent.java.newrelic-api-3.34.0.jar
-$ exec grep -q newrelic-api-3.34.0.jar target/universal/stage/bin/app
+$ exists target/universal/stage/lib/com.newrelic.agent.java.newrelic-api-3.35.2.jar
+$ exec grep -q newrelic-api-3.35.2.jar target/universal/stage/bin/app
