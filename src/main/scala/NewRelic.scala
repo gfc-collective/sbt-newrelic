@@ -38,6 +38,7 @@ object NewRelic extends AutoPlugin {
     val newrelicLogDir = settingKey[String]("The directory for the newrelic agent log file. Default is the newrelic default (the logs directory under the newrelic.jar directory).")
     val newrelicLogLevel = settingKey[NewRelicLogLevel.LogLevel]("Specify the log level of the NewRelic agent. Default is `info`.")
     val newrelicAuditMode = settingKey[Boolean]("Log all data sent to and from New Relic in plain text. Default is `false`.")
+    val newrelicIgnoreStatusCodes = settingKey[Seq[Int]]("List of HTTP status codes that New Relic should not report as errors. Default is `404`.")
   }
 
   import autoImport._
@@ -61,6 +62,7 @@ object NewRelic extends AutoPlugin {
     newrelicIgnoreErrors := Seq("akka.actor.ActorKilledException"),
     newrelicLogLevel := NewRelicLogLevel.INFO,
     newrelicAuditMode := false,
+    newrelicIgnoreStatusCodes := Seq(404),
     newrelicTemplateReplacements := Seq(
       "app_name" -> newrelicAppName.value,
       "license_key" -> newrelicLicenseKey.value.getOrElse(""),
@@ -71,7 +73,8 @@ object NewRelic extends AutoPlugin {
       "ignore_errors" -> newrelicIgnoreErrors.value.mkString(","),
       "log_file_path" -> resolveNewrelicLogDir(newrelicLogDir.?.value),
       "log_level" -> newrelicLogLevel.value.toString.toLowerCase,
-      "audit_mode" -> newrelicAuditMode.value.toString
+      "audit_mode" -> newrelicAuditMode.value.toString,
+      "ignore_status_codes" -> newrelicIgnoreStatusCodes.value.mkString(",")
     ),
     newrelicIncludeApi := false,
     libraryDependencies += "com.newrelic.agent.java" % "newrelic-agent" % newrelicVersion.value % nrConfig,
