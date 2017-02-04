@@ -4,6 +4,10 @@ name := "sbt-newrelic"
 
 sbtPlugin := true
 
+enablePlugins(GitVersioning, GitBranchPrompt)
+
+git.useGitDescribe := true
+
 scalacOptions ++= List(
   "-unchecked",
   "-deprecation",
@@ -22,8 +26,6 @@ scriptedLaunchOpts := { scriptedLaunchOpts.value ++
 }
 
 scriptedBufferLog := false
-
-version := "git describe --tags --dirty --always".!!.stripPrefix("v").trim
 
 publishMavenStyle := false
 
