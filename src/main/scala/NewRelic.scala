@@ -4,8 +4,10 @@ import sbt._
 import sbt.Keys._
 
 import com.typesafe.sbt.SbtNativePackager._
-import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
-import com.typesafe.sbt.packager.archetypes.JavaAppPackaging.autoImport._
+import com.typesafe.sbt.packager.archetypes.scripts.BashStartScriptPlugin
+import com.typesafe.sbt.packager.archetypes.scripts.BashStartScriptPlugin.autoImport._
+import com.typesafe.sbt.packager.archetypes.scripts.BatStartScriptPlugin
+import com.typesafe.sbt.packager.archetypes.scripts.BatStartScriptPlugin.autoImport._
 import com.typesafe.sbt.packager.archetypes.TemplateWriter
 
 object NewRelic extends AutoPlugin {
@@ -43,7 +45,7 @@ object NewRelic extends AutoPlugin {
 
   import autoImport._
 
-  override def requires = JavaAppPackaging
+  override def requires = BashStartScriptPlugin && BatStartScriptPlugin
 
   val nrConfig = config("newrelic-agent").hide
 

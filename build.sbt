@@ -17,7 +17,7 @@ scalacOptions ++= List(
 
 javaVersionPrefix in javaVersionCheck := Some("1.7")
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.0.1" % "provided")
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.0-M8" % "provided")
 
 ScriptedPlugin.scriptedSettings
 
