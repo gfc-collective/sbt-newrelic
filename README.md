@@ -22,7 +22,16 @@ The plugin assumes that sbt-native-packager has been included in your SBT build 
 This can be done by adding the plugin following instructions at http://www.scala-sbt.org/sbt-native-packager/ or by adding
 another plugin that includes and initializes it (e.g. the SBT plugin for Play 2.4.x).
 
-Installation for sbt-native-packager 1.0.x or newer (and Play 2.4.x or newer)
+Installation for sbt-native-packager 1.2.x or newer (and Play 2.6.x or newer)
+------------
+
+Add the following to your `project/plugins.sbt` file:
+
+```scala
+addSbtPlugin("com.gilt.sbt" % "sbt-newrelic" % "0.2.0")
+```
+
+Installation for sbt-native-packager 1.0.x/1.1.x (and Play 2.4.x/2.5.x)
 ------------
 
 Add the following to your `project/plugins.sbt` file:
