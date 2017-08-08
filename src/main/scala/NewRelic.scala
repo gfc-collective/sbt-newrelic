@@ -1,9 +1,9 @@
 package com.gilt.sbt.newrelic
 
 import sbt._
-//import sbt.librarymanagement.DependencyFilter
 import sbt.Keys._
 
+import com.gilt.sbt.newrelic.compat.DependencyFilter
 import com.typesafe.sbt.SbtNativePackager._
 import com.typesafe.sbt.packager.archetypes.scripts.BashStartScriptPlugin
 import com.typesafe.sbt.packager.archetypes.scripts.BashStartScriptPlugin.autoImport._

@@ -25,7 +25,11 @@ scalacOptions ++= List(
   "-encoding", "UTF-8"
 )
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.2-RC2" % "provided")
+libraryDependencies += {
+  val currentSbtVersion = (sbtBinaryVersion in pluginCrossBuild).value
+  Defaults.sbtPluginExtra("com.typesafe.sbt" % "sbt-native-packager" % "1.2.2-RC2" % "provided", currentSbtVersion, scalaBinaryVersion.value)
+}
+//addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.2-RC2" % "provided")
 
 publishMavenStyle := false
 
