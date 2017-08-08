@@ -1,6 +1,7 @@
 package com.gilt.sbt.newrelic
 
 import sbt._
+//import sbt.librarymanagement.DependencyFilter
 import sbt.Keys._
 
 import com.typesafe.sbt.SbtNativePackager._
