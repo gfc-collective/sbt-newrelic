@@ -4,11 +4,9 @@ name := "sbt-newrelic"
 
 sbtPlugin := true
 
-crossSbtVersions := List("0.13.16", "1.0.2")
+crossSbtVersions := List("0.13.16", "1.0.3")
 
 enablePlugins(GitVersioning, GitBranchPrompt)
-
-ScriptedPlugin.scriptedSettings
 
 scriptedLaunchOpts := { scriptedLaunchOpts.value ++
   Seq("-Xmx1024M", "-XX:MaxPermSize=256M", "-Dplugin.version=" + version.value)
