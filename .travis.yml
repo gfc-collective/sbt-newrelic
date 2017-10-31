@@ -5,8 +5,7 @@ script:
   - sbt ^scripted
 matrix:
   include:
-  - env: SBT_VERSION="1.0.3"
-    jdk: oraclejdk8
+  - jdk: oraclejdk8
 sudo: false
 notifications:
   email:
