@@ -27,7 +27,7 @@ scalacOptions ++= List(
 
 libraryDependencies += {
   val currentSbtVersion = (sbtBinaryVersion in pluginCrossBuild).value
-  Defaults.sbtPluginExtra("com.typesafe.sbt" % "sbt-native-packager" % "1.2.2-RC2" % "provided", currentSbtVersion, scalaBinaryVersion.value)
+  Defaults.sbtPluginExtra("com.typesafe.sbt" % "sbt-native-packager" % "1.3.1" % "provided", currentSbtVersion, scalaBinaryVersion.value)
 }
 //addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.2-RC2" % "provided")
 

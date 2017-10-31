@@ -48,10 +48,12 @@ object NewRelic extends AutoPlugin {
 
   override def requires = BashStartScriptPlugin && BatStartScriptPlugin
 
-  val nrConfig = config("newrelic-agent").hide
+  val NrConfig = config("newrelic-agent").hide
+  @deprecated("use NrConfig", "")
+  val nrConfig = NrConfig
 
   override lazy val projectSettings = Seq(
-    ivyConfigurations += nrConfig,
+    ivyConfigurations += NrConfig,
     newrelicVersion := "3.42.0",
     newrelicAgent := findNewrelicAgent(update.value),
     newrelicAppName := name.value,
@@ -80,7 +82,7 @@ object NewRelic extends AutoPlugin {
       "ignore_status_codes" -> newrelicIgnoreStatusCodes.value.mkString(",")
     ),
     newrelicIncludeApi := false,
-    libraryDependencies += "com.newrelic.agent.java" % "newrelic-agent" % newrelicVersion.value % nrConfig,
+    libraryDependencies += "com.newrelic.agent.java" % "newrelic-agent" % newrelicVersion.value % NrConfig,
     libraryDependencies ++= {
       if (newrelicIncludeApi.value)
         Seq("com.newrelic.agent.java" % "newrelic-api" % newrelicVersion.value)
