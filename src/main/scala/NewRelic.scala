@@ -42,6 +42,7 @@ object NewRelic extends AutoPlugin {
     val newrelicLogLevel = settingKey[NewRelicLogLevel.LogLevel]("Specify the log level of the NewRelic agent. Default is `info`.")
     val newrelicAuditMode = settingKey[Boolean]("Log all data sent to and from New Relic in plain text. Default is `false`.")
     val newrelicIgnoreStatusCodes = settingKey[Seq[Int]]("List of HTTP status codes that New Relic should not report as errors. Default is `404`.")
+    val newrelicFuturesAsSegments = settingKey[Boolean]("Report Scala Futures as transaction segments.")
   }
 
   import autoImport._
@@ -68,6 +69,7 @@ object NewRelic extends AutoPlugin {
     newrelicLogLevel := NewRelicLogLevel.INFO,
     newrelicAuditMode := false,
     newrelicIgnoreStatusCodes := Seq(404),
+    newrelicFuturesAsSegments := false,
     newrelicTemplateReplacements := Seq(
       "app_name" -> newrelicAppName.value,
       "license_key" -> newrelicLicenseKey.value.getOrElse(""),
@@ -79,7 +81,8 @@ object NewRelic extends AutoPlugin {
       "log_file_path" -> resolveNewrelicLogDir(newrelicLogDir.?.value),
       "log_level" -> newrelicLogLevel.value.toString.toLowerCase,
       "audit_mode" -> newrelicAuditMode.value.toString,
-      "ignore_status_codes" -> newrelicIgnoreStatusCodes.value.mkString(",")
+      "ignore_status_codes" -> newrelicIgnoreStatusCodes.value.mkString(","),
+      "scala_futures_as_segments" -> newrelicFuturesAsSegments.value.toString
     ),
     newrelicIncludeApi := false,
     libraryDependencies += "com.newrelic.agent.java" % "newrelic-agent" % newrelicVersion.value % NrConfig,
