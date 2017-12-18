@@ -28,7 +28,7 @@ Installation for sbt-native-packager 1.3.1 or newer (and Play 2.6.x or newer)
 Add the following to your `project/plugins.sbt` file:
 
 ```scala
-addSbtPlugin("com.gilt.sbt" % "sbt-newrelic" % "0.2.3")
+addSbtPlugin("com.gilt.sbt" % "sbt-newrelic" % "0.2.4")
 ```
 
 Installation for sbt-native-packager 1.0.x/1.1.x (and Play 2.4.x/2.5.x)
@@ -82,6 +82,14 @@ from your build like this:
 
 ```scala
 newrelicConfig := (resourceDirectory in Compile).value / "newrelic.yml"
+```
+
+By default, the agent will not report Scala Futures as transaction segments,
+and they will not contribute to the transaction's reported total time. If you
+want to enable this, you can add:
+
+```scala
+newrelicFuturesAsSegments := true
 ```
 
 The application name reported to New Relic may be modified by setting `newrelicAppName`, the default value is the name of the project.
