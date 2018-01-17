@@ -256,6 +256,8 @@ common: &default_settings
     akka_instrumentation:
       enabled: ${{akka_instrumentation_enabled}}
 
+  lite_mode: ${{lite_mode}}
+
 # Application Environments
 # ------------------------------------------
 # Environment specific settings are in this section.
