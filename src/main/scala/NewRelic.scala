@@ -56,7 +56,7 @@ object NewRelic extends AutoPlugin {
 
   override lazy val projectSettings = Seq(
     ivyConfigurations += NrConfig,
-    newrelicVersion := "3.47.0",
+    newrelicVersion := "4.0.1",
     newrelicAgent := findNewrelicAgent(update.value),
     newrelicAppName := name.value,
     newrelicAttributesEnabled := true,
