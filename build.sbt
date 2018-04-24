@@ -4,7 +4,7 @@ name := "sbt-newrelic"
 
 sbtPlugin := true
 
-crossSbtVersions := List("0.13.16", "1.1.0")
+crossSbtVersions := List("0.13.17", "1.1.4")
 
 enablePlugins(GitVersioning, GitBranchPrompt)
 
@@ -23,7 +23,7 @@ scalacOptions ++= List(
   "-encoding", "UTF-8"
 )
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.3" % "provided")
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.4" % "provided")
 
 publishMavenStyle := false
 
