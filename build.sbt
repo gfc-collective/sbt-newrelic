@@ -4,7 +4,7 @@ name := "sbt-newrelic"
 
 sbtPlugin := true
 
-crossSbtVersions := List("0.13.17", "1.1.4")
+crossSbtVersions := List("0.13.17", "1.1.5")
 
 enablePlugins(GitVersioning, GitBranchPrompt)
 
