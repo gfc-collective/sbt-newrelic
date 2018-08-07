@@ -2,11 +2,9 @@ organization := "com.gilt.sbt"
 
 name := "sbt-newrelic"
 
-sbtPlugin := true
+crossSbtVersions := List("0.13.17", "1.2.1")
 
-crossSbtVersions := List("0.13.17", "1.1.6")
-
-enablePlugins(GitVersioning, GitBranchPrompt)
+enablePlugins(SbtPlugin, GitVersioning, GitBranchPrompt)
 
 scriptedLaunchOpts := { scriptedLaunchOpts.value ++
   Seq("-Xmx1024M", "-XX:MaxPermSize=256M", "-Dplugin.version=" + version.value)
