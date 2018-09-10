@@ -52,7 +52,7 @@ Configuration
 To use a specific New Relic Java Agent version, add the following to your `build.sbt` file:
 
 ```scala
-newrelicVersion := "4.3.0"
+newrelicVersion := "4.5.0"
 ```
 
 To add a New Relic license key to the generated `newrelic.yml` file, add the following to your `build.sbt` file:
