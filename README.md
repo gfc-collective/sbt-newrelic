@@ -28,7 +28,7 @@ Installation for sbt-native-packager 1.3.1 or newer (and Play 2.6.x or newer)
 Add the following to your `project/plugins.sbt` file:
 
 ```scala
-addSbtPlugin("com.gilt.sbt" % "sbt-newrelic" % "0.3.0")
+addSbtPlugin("com.gilt.sbt" % "sbt-newrelic" % "0.3.3")
 ```
 
 Installation for sbt-native-packager 1.0.x/1.1.x (and Play 2.4.x/2.5.x)
