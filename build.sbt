@@ -2,7 +2,7 @@ organization := "com.gilt.sbt"
 
 name := "sbt-newrelic"
 
-crossSbtVersions := List("0.13.17", "1.2.1")
+crossSbtVersions := List("0.13.17", "1.2.3")
 
 enablePlugins(SbtPlugin, GitVersioning, GitBranchPrompt)
 
