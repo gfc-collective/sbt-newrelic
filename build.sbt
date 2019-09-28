@@ -21,7 +21,7 @@ scalacOptions ++= List(
   "-encoding", "UTF-8"
 )
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.25" % "provided")
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.4.1" % "provided")
 
 publishMavenStyle := false
 
