@@ -4,6 +4,6 @@ addSbtPlugin("org.foundweekends" % "sbt-bintray" % "0.5.5")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "1.0.0")
 
-addSbtPlugin("io.crashbox" % "sbt-gpg" % "0.2.0")
+addSbtPlugin("io.crashbox" % "sbt-gpg" % "0.2.1")
 
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.5.0")
