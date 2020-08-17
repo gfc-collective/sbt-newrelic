@@ -1,4 +1,4 @@
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.7.4")
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.7.5")
 
 {
   val pluginVersion = System.getProperty("plugin.version")
