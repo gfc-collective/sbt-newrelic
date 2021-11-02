@@ -4,7 +4,7 @@ name := "sbt-newrelic"
 
 scalaVersion := "2.12.14"
 
-crossScalaVersions := Seq(scalaVersion.value, "2.13.6")
+crossScalaVersions := Seq(scalaVersion.value, "2.13.7")
 
 crossSbtVersions := List("0.13.18", "1.3.6")
 
