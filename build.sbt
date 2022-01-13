@@ -2,7 +2,7 @@ organization := "com.gilt.sbt"
 
 name := "sbt-newrelic"
 
-scalaVersion := "2.12.14"
+scalaVersion := "2.12.15"
 
 crossScalaVersions := Seq(scalaVersion.value, "2.13.8")
 
